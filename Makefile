@@ -6,14 +6,14 @@
 #    By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/29 02:20:26 by asaracut          #+#    #+#              #
-#    Updated: 2025/07/29 02:27:45 by asaracut         ###   ########.fr        #
+#    Updated: 2025/07/30 01:15:58 by asaracut         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = minishell.c
+SRC = src/minishell.c
 OBJ = $(SRC:.c=.o)
 
 # Règles
