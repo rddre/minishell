@@ -6,12 +6,24 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:20 by asaracut          #+#    #+#             */
-/*   Updated: 2025/07/19 22:51:12 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/07/29 02:26:29 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main()
-{
+#include "minishell.h"
 
-    return (1);
+int	main(void)
+{
+	char	*line;
+
+	while(1)
+	{
+		line = readline("minishell% ");
+
+		printf("%s", line);
+
+		free(line);
+	}
+
+	return (0);
 }
