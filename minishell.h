@@ -6,13 +6,14 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:15 by asaracut          #+#    #+#             */
-/*   Updated: 2025/07/29 02:18:30 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/07/30 02:27:26 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#define _POSIX_C_SOURCE 200809L // a mettre avant tout les include pour definir la version pour les sig
 #include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
@@ -20,7 +21,16 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
+
+/*           sig              */
+void ctrl_c(int signo);
+void sig_start(struct sigaction *sa);
+
+/*          free exit           */
+void exit_free(void);
 
 #endif

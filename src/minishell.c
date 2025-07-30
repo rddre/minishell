@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:20 by asaracut          #+#    #+#             */
-/*   Updated: 2025/07/30 01:17:41 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/07/30 02:29:04 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	main(void)
 {
-	char	*line;
+	struct sigaction sa;
+	char *line;
+
+	sig_start(&sa);
 
 	while(1)
 	{
 		line = readline("minishell% "); //prompt de base
 		if (!line) // Ctrl+D
-        {
-            printf("exit\n");
-            break;
-        }
+			exit_free();
 
 		printf("%s", line);
 
