@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:15 by asaracut          #+#    #+#             */
-/*   Updated: 2025/07/30 02:27:26 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:36:13 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 #include <signal.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
+typedef struct s_cmd
+{
+	char	**args;
+}	t_cmd;
+
+t_cmd	*parsing(char *line);
+int		exec(t_cmd *cmd);
 
 
 /*           sig              */
