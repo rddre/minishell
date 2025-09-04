@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:06:05 by asaracut          #+#    #+#             */
-/*   Updated: 2025/08/06 16:11:58 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/04 03:01:10 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,38 @@
 */
 t_cmd	*parsing(char *line)
 {
-	// prototype vide pour l’instant
-	return (NULL);
+	t_cmd	*cmd;
+	char	*token;
+	int		count = 0;
+
+	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		return (NULL);
+
+	// Compter les mots
+	char *tmp = strdup(line);
+	token = strtok(tmp, " \t\n");
+	while (token)
+	{
+		count++;
+		token = strtok(NULL, " \t\n");
+	}
+	free(tmp);
+
+	// Allouer args
+	cmd->args = malloc(sizeof(char *) * (count + 1));
+	if (!cmd->args)
+		return (NULL);
+
+	// Découper vraiment
+	int i = 0;
+	token = strtok(line, " \t\n");
+	while (token)
+	{
+		cmd->args[i++] = strdup(token);
+		token = strtok(NULL, " \t\n");
+	}
+	cmd->args[i] = NULL; // fin du tableau
+
+	return cmd;
 }

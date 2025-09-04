@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:35:40 by asaracut          #+#    #+#             */
-/*   Updated: 2025/08/06 16:35:44 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/04 02:49:28 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,38 @@
 */
 int	exec(t_cmd *cmd)
 {
-	// prototype vide pour l’instant
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork");
+		return (1);
+	}
+	if (pid == 0) // processus enfant
+	{
+		if (execve(cmd->args[0], cmd->args, NULL) == -1)
+		{
+			perror("execve");
+			_exit(1);
+		}
+	}
+	else // processus parent
+	{
+		waitpid(pid, &status, 0);
+	}
 	return (0);
 }
+
+/*
+int main(void)
+{
+	t_cmd cmd;
+	char *args[] = {"/bin/echo", "NULL\n\n", NULL};
+
+	cmd.args = args;
+	exec(&cmd);
+	printf("il revien bien au main\n");
+	return 0;
+}*/
