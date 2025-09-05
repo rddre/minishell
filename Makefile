@@ -6,7 +6,7 @@
 #    By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/29 02:20:26 by asaracut          #+#    #+#              #
-#    Updated: 2025/09/04 03:15:52 by asaracut         ###   ########.fr        #
+#    Updated: 2025/09/05 03:33:34 by asaracut         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -D_POSIX_C_SOURCE=200809L
 SRC = src/minishell.c \
 		src/parse/parsing.c src/exec/exec.c \
+		src/exec/exec_builtin.c \
+		src/builtin/cd.c src/builtin/echo.c src/builtin/env.c \
+		src/builtin/exit.c src/builtin/export.c src/builtin/pwd.c \
+		src/builtin/unset.c \
 		src/sig/sig.c src/outil/exit_free.c
 OBJDIR  = obj
 OBJ     = $(SRC:%.c=$(OBJDIR)/%.o)
