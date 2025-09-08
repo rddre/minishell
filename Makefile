@@ -6,7 +6,7 @@
 #    By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/29 02:20:26 by asaracut          #+#    #+#              #
-#    Updated: 2025/09/05 03:33:34 by asaracut         ###   ########.fr        #
+#    Updated: 2025/09/08 05:41:22 by asaracut         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC = src/minishell.c \
 		src/builtin/cd.c src/builtin/echo.c src/builtin/env.c \
 		src/builtin/exit.c src/builtin/export.c src/builtin/pwd.c \
 		src/builtin/unset.c \
-		src/sig/sig.c src/outil/exit_free.c
+		src/sig/sig.c src/outil/exit_free.c src/outil/outil.c \
+		src/outil/env_outil.c
 OBJDIR  = obj
 OBJ     = $(SRC:%.c=$(OBJDIR)/%.o)
 

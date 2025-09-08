@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_outil.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/05 03:29:10 by asaracut          #+#    #+#             */
-/*   Updated: 2025/09/08 05:56:10 by asaracut         ###   ########.fr       */
+/*   Created: 2025/09/08 05:37:35 by asaracut          #+#    #+#             */
+/*   Updated: 2025/09/08 05:38:04 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-/* on affiche seulement les variables avec un '='
-    ca affiche l'environement complet
-	ps : c'est tout petit mais ca a ete une galere a mettre en place l'env */
-int		builtin_env(char **environ)
+char **copy_env(char **envp)
 {
-    int i = 0;
+    int count = 0;
+    char **new_env;
 
-    while (environ[i])
-    {
-        
-        if (ft_strchr(environ[i], '='))
-            printf("%s\n", environ[i]);
-        i++;
-    }
-	return (0);
+    while (envp[count])
+        count++;
+
+    new_env = malloc(sizeof(char *) * (count + 1));
+    if (!new_env)
+        return NULL;
+
+    for (int i = 0; i < count; i++)
+        new_env[i] = strdup(envp[i]);
+    new_env[count] = NULL;
+
+    return new_env;
 }

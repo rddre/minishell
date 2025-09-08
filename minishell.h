@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:15 by asaracut          #+#    #+#             */
-/*   Updated: 2025/09/05 03:29:07 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/08 05:52:06 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,16 @@ typedef struct s_cmd
 	char	**args;
 }			t_cmd;
 
+/* copie de l'environnement */
+typedef struct s_shell
+{
+    char    **env;   
+}   t_shell;
+
 /*		 parsing / exec         */
 t_cmd	*parsing(char *line);
 int		exec(t_cmd *cmd);
-int		exec_builtin(t_cmd *cmd);
+int		exec_builtin(t_cmd *cmd, t_shell *shell);
 
 /*       builtins            */
 int		builtin_echo(t_cmd *cmd);
@@ -42,7 +48,7 @@ int		builtin_cd(t_cmd *cmd);
 int		builtin_pwd(t_cmd *cmd);
 int		builtin_export(t_cmd *cmd);
 int		builtin_unset(t_cmd *cmd);
-int		builtin_env(t_cmd *cmd);
+int		builtin_env(char **environ);
 int		builtin_exit(t_cmd *cmd);
 
 /*           sig              */
@@ -54,5 +60,8 @@ void	exit_free(void);
 
 /*          outils              */
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strchr(const char *string, int c);
+char	**copy_env(char **envp);
 
 #endif

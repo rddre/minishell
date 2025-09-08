@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:20 by asaracut          #+#    #+#             */
-/*   Updated: 2025/09/05 03:11:48 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/08 05:45:23 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,20 @@ int is_builtin(char *cmd)
     return (0);
 }
 
-int	main(void)
+/* cmd c'est la ligne de commande / shell c'est l'environement */
+int	main(int argc, char **argv, char **envp)
 {
 	struct sigaction sa;
 	char *line;
 	t_cmd *cmd;
+	t_shell shell;
+
+    (void)argc;
+    (void)argv;
 
 	sig_start(&sa);
-
+	shell.env = copy_env(envp);
+	
 	while(1)
 	{
 		line = readline("minishell% "); //prompt de base
@@ -60,7 +66,7 @@ int	main(void)
 		if (cmd && cmd->args[0])
 		{
 		if (is_builtin(cmd->args[0]))
-			exec_builtin(cmd);
+			exec_builtin(cmd, &shell);
 		else
 			exec(cmd);
 		}
