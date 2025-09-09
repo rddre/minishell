@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:15 by asaracut          #+#    #+#             */
-/*   Updated: 2025/09/08 05:52:06 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/09 03:28:33 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_cmd
 {
@@ -49,19 +50,24 @@ int		builtin_pwd(t_cmd *cmd);
 int		builtin_export(t_cmd *cmd);
 int		builtin_unset(t_cmd *cmd);
 int		builtin_env(char **environ);
-int		builtin_exit(t_cmd *cmd);
+int		builtin_exit(t_cmd *cmd, t_shell *shell);
 
 /*           sig              */
 void	ctrl_c(int signo);
 void	sig_start(struct sigaction *sa);
 
 /*          free exit           */
-void	exit_free(void);
+void	exit_free(t_cmd *cmd, t_shell *shell, int exit_code);
+void free_all(t_cmd *cmd, t_shell *shell);
 
 /*          outils              */
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *string, int c);
+int		is_number(char *str);
+int		ft_atoi(const char *str);
+
+/*        env outil           */
 char	**copy_env(char **envp);
 
 #endif

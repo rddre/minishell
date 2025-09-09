@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:20 by asaracut          #+#    #+#             */
-/*   Updated: 2025/09/08 05:45:23 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/09 03:14:34 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		line = readline("minishell% "); //prompt de base
 		if (!line) // Ctrl+D
-			exit_free();
+			exit_free(cmd, &shell, 0);
 
 		// printf("%s", line);
 
