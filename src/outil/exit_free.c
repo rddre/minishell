@@ -6,33 +6,38 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 01:17:01 by asaracut          #+#    #+#             */
-/*   Updated: 2025/09/09 03:14:01 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/11 01:59:04 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void free_all(t_cmd *cmd, t_shell *shell)
+void free_cmd(t_cmd *cmd)
 {
-	int i;
+	int i = 0;
 
-	if (cmd)
+	if (!cmd)
+		return ;
+	if (cmd->args)
 	{
-		if (cmd->args)
+		while (cmd->args[i])
 		{
-			i = 0;
-			while (cmd->args[i])
-			{
-				free(cmd->args[i]);
-				i++;
-			}
-			free(cmd->args);
+			free(cmd->args[i]);
+			i++;
 		}
-		free(cmd);
+		free(cmd->args);
 	}
-	if (shell && shell->env)
+	free(cmd);
+}
+
+void free_shell(t_shell *shell)
+{
+	int i = 0;
+
+	if (!shell)
+		return ;
+	if (shell->env)
 	{
-		i = 0;
 		while (shell->env[i])
 		{
 			free(shell->env[i]);
@@ -40,6 +45,13 @@ void free_all(t_cmd *cmd, t_shell *shell)
 		}
 		free(shell->env);
 	}
+}
+
+void free_all(t_cmd *cmd, t_shell *shell)
+{
+	free_cmd(cmd);
+	free_shell(shell);
+	rl_clear_history();
 }
 
 void exit_free(t_cmd *cmd, t_shell *shell, int exit_code)

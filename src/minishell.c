@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:20 by asaracut          #+#    #+#             */
-/*   Updated: 2025/09/09 03:14:34 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/11 02:08:27 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	struct sigaction sa;
 	char *line;
-	t_cmd *cmd;
+	t_cmd *cmd = NULL;
 	t_shell shell;
 
     (void)argc;
@@ -70,7 +70,12 @@ int	main(int argc, char **argv, char **envp)
 		else
 			exec(cmd);
 		}
-			
+
+		if (cmd) // sans ca : leak, faut refaire un cmd a chaque tour
+		{
+			free_cmd(cmd);
+			cmd = NULL;
+		}
 		free(line);
 	}
 

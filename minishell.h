@@ -6,7 +6,7 @@
 /*   By: asaracut <asaracut@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 22:49:15 by asaracut          #+#    #+#             */
-/*   Updated: 2025/09/09 03:28:33 by asaracut         ###   ########.fr       */
+/*   Updated: 2025/09/11 01:55:07 by asaracut         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_cmd
 /* copie de l'environnement */
 typedef struct s_shell
 {
-    char    **env;   
+    char    **env;
 }   t_shell;
 
 /*		 parsing / exec         */
@@ -58,7 +58,9 @@ void	sig_start(struct sigaction *sa);
 
 /*          free exit           */
 void	exit_free(t_cmd *cmd, t_shell *shell, int exit_code);
-void free_all(t_cmd *cmd, t_shell *shell);
+void	free_all(t_cmd *cmd, t_shell *shell);
+void	free_shell(t_shell *shell);
+void	free_cmd(t_cmd *cmd);
 
 /*          outils              */
 int		ft_strcmp(const char *s1, const char *s2);
